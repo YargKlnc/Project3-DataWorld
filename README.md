@@ -1,10 +1,17 @@
-# Salaries in Data World
+# Data World Global Salaries
+# Highest Paying Countries, Highest Salary Experience Levels and much more
+# Use the interactive charts below to explore the dataset
 
 Project 3 - Group 1 by Ismail Omer, Yargi Kilinc, Archit Hallan, Tania Barrera
 
 We are delighted to present Project 3, a comprehensive exploration tailored for employers, job seekers in the data realm, individuals contemplating joining a bootcamp, and esteemed global HR companies.
 
-NOTES by Yargi:
+NOTES by Yargi Dec 11
+
+![image](https://github.com/YargKlnc/Project3-DataWorld/assets/142269763/f77a934b-7331-4fde-93ee-ce6a44168ccd)
+
+
+NOTES by Yargi Dec 9
 
 - New library jsdelivr.com was used
 - HTML file revised
@@ -141,4 +148,7 @@ The returned data is in json format and follows this structure:
 
 ## References
 
-Head photo rights belongs to https://www.digitalvidya.com/blog/data-science-jobs/
+https://www.openstreetmap.org/
+https://www.kaggle.com/datasets/iamsouravbanerjee/data-science-salaries-2023/data
+https://www.jsdelivr.com/
+https://apexcharts.com/javascript-chart-demos/
