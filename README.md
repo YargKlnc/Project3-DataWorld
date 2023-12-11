@@ -8,6 +8,17 @@ We are delighted to present Project 3, a comprehensive exploration tailored for 
 
 NOTES by Yargi Dec 11
 
+- api route @app.route("/api/v1.0/job_title/<job_title_name>/top10_countries") (revised the job_title_name in here= def salaries_by_title_top10_countries(job_title_name)
+- code divided to 3 parts; country.js, jobs.js, experience.js
+- index.html revised
+- View 1 (horizontal bar chart and openstreetmap completed)
+- View 2 (line chart and bubble darkmap completed)
+- View 3 (line chart completed, map needs work)
+- User can download visuals
+- All titles of visuals revised
+- Head title of dashboard revised on html
+- references updated (adding apexcharts, jsdelivr, openstreetmap, kaggle)
+
 ![image](https://github.com/YargKlnc/Project3-DataWorld/assets/142269763/f77a934b-7331-4fde-93ee-ce6a44168ccd)
 
 
@@ -149,6 +160,9 @@ The returned data is in json format and follows this structure:
 ## References
 
 https://www.openstreetmap.org/
+
 https://www.kaggle.com/datasets/iamsouravbanerjee/data-science-salaries-2023/data
+
 https://www.jsdelivr.com/
+
 https://apexcharts.com/javascript-chart-demos/
