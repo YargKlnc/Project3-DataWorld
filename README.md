@@ -1,7 +1,7 @@
 # Data World Global Salaries
-# Highest Paying Countries, Highest Salary Experience Levels and much more
-# Use the interactive charts below to explore the dataset
-# This initiative serves as your compass for well-informed decisions in hiring, job seeking, bootcamp considerations, and global HR strategies.
+## Highest Paying Countries, Highest Salary Experience Levels and much more
+### Use the interactive charts below to explore the dataset
+#### This initiative serves as your compass for well-informed decisions in hiring, job seeking, bootcamp considerations, and global HR strategies.
 
 
 Project 3 - Group 1 by Ismail Omer, Yargi Kilinc, Archit Hallan, Tania Barrera
