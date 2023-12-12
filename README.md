@@ -1,6 +1,9 @@
 # Tech Career Analytics and Insights Hub
+
 ## Highest Paying Countries, Highest Salary Experience Levels and much more.
+
 ### Use the interactive charts below to explore the dataset, explore salary trends and make informed decisions.
+
 #### This tool is designed to empower you with valuable insights for strategic decisions in global job seeking, hiring, global HR strategies.
 
 ![image](https://github.com/YargKlnc/Project3-DataWorld/assets/142269763/c3fd3e07-eedc-4dc3-ad61-feab30eff45b)
@@ -71,7 +74,7 @@ You will need to have installed the following python packages:
 
 #### Static: To access the whole dataset
 
-Our API has a static route that returns all the individual data points, along with the distinct values present in the dataset for the `Company Location`, `Job Title`, `Expertise Level` columns.
+Our API has a static route that returns all the individual data points, along with the distinct values present in the dataset for the `Company Location`, `Job Title`, and `Expertise Level` columns.
 
 To access this route, follow this relative route after stating your local server: `/api/v1.0/salaries`
 
@@ -289,3 +292,7 @@ https://apexcharts.com/javascript-chart-demos/
 https://www.kaggle.com/datasets/iamsouravbanerjee/data-science-salaries-2023/data
 
 https://opencagedata.com/api
+
+Some code sections were adapted from the UofT SCS EdX Data Bootcamp class activities:
+
+© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
