@@ -43,9 +43,6 @@ Our sophisticated visuals provide profound insights:
 
 > **API route:** `/api/v1.0/experience_level/<experience_level_name>/all_countries`
 
-![image](https://github.com/ismailo1/project3/assets/142269763/c0015b2a-1c6d-4eb8-948e-b20085f859a7)
-
-
 ## How to
 
 To visualize the dashboard, clone the repository into your machine and run the app.py flask application using `python app.py` from Terminal. The Home page (i.e. `/`) will display the dashboard.
