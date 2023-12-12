@@ -1,6 +1,6 @@
 # Tech Career Analytics and Insights Hub
-## Highest Paying Countries, Highest Salary Experience Levels and much more
-### Use the interactive charts below to explore the dataset, explore salary trends and make informed decisions
+## Highest Paying Countries, Highest Salary Experience Levels and much more.
+### Use the interactive charts below to explore the dataset, explore salary trends and make informed decisions.
 #### This tool is designed to empower you with valuable insights for strategic decisions in global job seeking, hiring, global HR strategies.
 
 ![image](https://github.com/YargKlnc/Project3-DataWorld/assets/142269763/c3fd3e07-eedc-4dc3-ad61-feab30eff45b)
