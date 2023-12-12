@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Science Salaries API Doc</title>
+</head>
+
+<body>
+    <h2 id="welcome-title">Welcome to the Data Science Salaries API!</h2>
+    <h3 id="api-routes">API routes</h3>
+    <h4 id="static-to-access-the-whole-dataset">Static: To access the whole dataset</h4>
+    <p>Our API has a static route that returns all the individual data points, along with the distinct values present in
+        the
+        dataset for the <code>Company Location</code>, <code>Job Title</code>, <code>Expertise Level</code> columns.</p>
+    <p>To access this route, follow this relative route after stating your local server: <code>/api/v1.0/salaries</code>
+    </p>
+    <p>The returned data is in json format and follows this structure:</p>
+    <pre><code class="lang-json">
+{
+    <span class="hljs-attr">"Company Location"</span>: [
+        <span class="hljs-string">"Canada"</span>,
+        <span class="hljs-string">"Germany"</span>,
+        ...
+    ],
+    <span class="hljs-attr">"Data"</span>: [{
+            <span class="hljs-attr">"Company Location"</span>: <span class="hljs-string">"Canada"</span>,
+            <span class="hljs-attr">"Company Size"</span>: <span class="hljs-string">"Large"</span>,
+            <span class="hljs-attr">"Employment Type"</span>: <span class="hljs-string">"Contract"</span>,
+            <span class="hljs-attr">"Expertise Level"</span>: <span class="hljs-string">"Junior"</span>,
+            <span class="hljs-attr">"Job Title"</span>: <span class="hljs-string">"Staff Data Analyst"</span>,
+            <span class="hljs-attr">"Salary in USD"</span>: <span class="hljs-number">44753</span>,
+            <span class="hljs-attr">"Year"</span>: <span class="hljs-number">2020</span>
+        },
+        {
+            <span class="hljs-attr">"Company Location"</span>: <span class="hljs-string">"Germany"</span>,
+            <span class="hljs-attr">"Company Size"</span>: <span class="hljs-string">"Medium"</span>,
+            <span class="hljs-attr">"Employment Type"</span>: <span class="hljs-string">"Full-Time"</span>,
+            <span class="hljs-attr">"Expertise Level"</span>: <span class="hljs-string">"Junior"</span>,
+            <span class="hljs-attr">"Job Title"</span>: <span class="hljs-string">"AI Engineer"</span>,
+            <span class="hljs-attr">"Salary in USD"</span>: <span class="hljs-number">35000</span>,
+            <span class="hljs-attr">"Year"</span>: <span class="hljs-number">2023</span>
+        },
+        ...
+    ],
+    <span class="hljs-attr">"Expertise Level"</span>: [
+        <span class="hljs-string">"Expert"</span>,
+        <span class="hljs-string">"Junior"</span>,
+        ...
+    ],
+    <span class="hljs-attr">"Job Title"</span>: [
+        <span class="hljs-string">"Staff Data Analyst"</span>,
+        <span class="hljs-string">"AI Engineer"</span>,
+        ...
+    ]
+}
+</code></pre>
+    <h4 id="dynamic-filtered-by-a-column-s-value">Dynamic: Filtered by a column&#39;s value</h4>
+    <p>The rest of the API routes are dynamic. The first one is a general route that allows the user to filter using a
+        single value for a column in the salaries table.</p>
+    <p>To access this route, follow this relative route after stating your local server:
+        <code>/api/v1.0/filter/&lt;column_name&gt;/&lt;value&gt;</code>, where <code>&lt;column_name&gt;</code> is the
+        name
+        of one of the columns in the salaries table and <code>&lt;value&gt;</code> is the desired value for that column.
+    </p>
+    <p>The returned data is in json format and follows the same structure as the above static route.</p>
+    <h4 id="dynamic-filtered-by-country">Dynamic: Filtered by country</h4>
+    <p>There are three routes that filter the data by a single country and return aggregated data.</p>
+    <ol>
+        <li>
+            <p>Job title counts: <code>/api/v1.0/country/&lt;country_name&gt;/job_title_counts</code>. This route
+                returns a
+                json dictionary where the keys correspond to the job titles available in the country selected in
+                <code>&lt;country_name&gt;</code>. Here is an example of the returned data structure:
+            </p>
+            <pre><code class="lang-json"> {
+     ...,
+     <span class="hljs-string">"Data Analyst"</span>: {
+         <span class="hljs-string">"count"</span>: <span class="hljs-number">20</span>
+     },
+     <span class="hljs-string">"Data Architect"</span>: {
+         <span class="hljs-string">"count"</span>: <span class="hljs-number">2</span>
+     },
+     <span class="hljs-string">"Data Engineer"</span>: {
+         <span class="hljs-string">"count"</span>: <span class="hljs-number">22</span>
+     },
+     <span class="hljs-string">"Data Scientist"</span>: {
+         <span class="hljs-string">"count"</span>: <span class="hljs-number">36</span>
+     },
+     ...
+ }
+</code></pre>
+        </li>
+        <li>
+            <p>Ordered job titles: <code>/api/v1.0/country/&lt;country_name&gt;/all_job_titles</code>. This route
+                returns a
+                json dictionary where the keys correspond to summary statics mean, median, max and mean. Each of these
+                contains a dictionary of job titles available in the country selected in
+                <code>&lt;country_name&gt;</code>,
+                ordered descending by the summary statistic indicated in the key. Within a rank number there is a list
+                with
+                the first value corresponding to the job title name and the second the aggregated value (using the
+                indicated
+                summary statistic) of salary in USD. Here is an example of the returned data structure:</p>
+            <pre><code class="lang-json"> {
+     <span class="hljs-string">"max_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"Data Scientist"</span>,
+             <span class="hljs-number">281000</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"AI Developer"</span>,
+             <span class="hljs-number">275000</span>
+         ],
+         ...
+     },
+     <span class="hljs-string">"mean_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"AI Developer"</span>,
+             <span class="hljs-number">275000.0</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"Machine Learning Software Engineer"</span>,
+             <span class="hljs-number">206800.0</span>
+         ],
+         ...
+     },
+     <span class="hljs-string">"median_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"AI Developer"</span>,
+             <span class="hljs-number">275000.0</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"Machine Learning Software Engineer"</span>,
+             <span class="hljs-number">205400.0</span>
+         ],
+         ...
+     },
+     <span class="hljs-string">"min_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"AI Developer"</span>,
+             <span class="hljs-number">275000</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"AI Scientist"</span>,
+             <span class="hljs-number">200000</span>
+         ],
+         ...
+     }
+ }
+</code></pre>
+        </li>
+        <li>
+            <p>Top 10 ordered job titles: <code>/api/v1.0/country/&lt;country_name&gt;/top10_job_titles</code>. This
+                route
+                returns the same as the previous route, but it truncates the results to show only the top 10 job titles
+                by
+                each of the summary statistics.</p>
+        </li>
+    </ol>
+    <h4 id="dynamic-filtered-by-job-title">Dynamic: Filtered by job title</h4>
+    <p>There are three routes that filter the data by a single job title and return aggregated data.</p>
+    <ol>
+        <li>
+            <p>Ordered countries: <code>/api/v1.0/job_title/&lt;job_title_name&gt;/all_countries</code>. This route
+                returns
+                a json dictionary where the keys correspond to summary statics mean, median, max and mean. Each of these
+                contains a dictionary of countries where the job title selected in <code>&lt;job_title_name&gt;</code>
+                is
+                available, ordered descending by the summary statistic indicated in the key. Within a rank number there
+                is a
+                list with the first value corresponding to the country name and the second the aggregated value (using
+                the
+                indicated summary statistic) of salary in USD. Here is an example of the returned data structure:</p>
+            <pre><code class="lang-json"> {
+     <span class="hljs-string">"max_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"United States"</span>,
+             <span class="hljs-number">370000</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"Canada"</span>,
+             <span class="hljs-number">242000</span>
+         ],
+         ...
+     },
+     <span class="hljs-string">"mean_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"Puerto Rico"</span>,
+             <span class="hljs-number">167500.0</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"United States"</span>,
+             <span class="hljs-number">157723.5366242038</span>
+         ],
+         ...
+     },
+     <span class="hljs-string">"median_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"Puerto Rico"</span>,
+             <span class="hljs-number">167500.0</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"United States"</span>,
+             <span class="hljs-number">151305.0</span>
+         ],
+         ...
+     },
+     <span class="hljs-string">"min_salary"</span>: {
+         <span class="hljs-string">"1"</span>: [
+             <span class="hljs-string">"Puerto Rico"</span>,
+             <span class="hljs-number">135000</span>
+         ],
+         <span class="hljs-string">"2"</span>: [
+             <span class="hljs-string">"Ireland"</span>,
+             <span class="hljs-number">102569</span>
+         ],
+         ...
+     }
+ }
+</code></pre>
+        </li>
+        <li>
+            <p>Top 10 ordered countries: <code>/api/v1.0/job_title/&lt;job_title_name&gt;/top10_countries</code>. This
+                route
+                returns the same as the previous route, but it truncates the results to show only the top 10 countries
+                by
+                each of the summary statistics.</p>
+        </li>
+        <li>
+            <p>Ordered experience levels: <code>/api/v1.0/job_title/&lt;job_title_name&gt;/experience_levels</code>.
+                This
+                route returns a similar data stucture from the previous two routes, but it aggregates by experience
+                level,
+                instead of by country.</p>
+        </li>
+    </ol>
+    <h4 id="dynamic-filtered-by-experience-level">Dynamic: Filtered by experience level</h4>
+    <p>There are two dynamic routes that filter the data by an experience level and return aggregated data.</p>
+    <ol>
+        <li>
+            <p>Ordered countries: <code>/api/v1.0/experience_level/&lt;experience_level_name&gt;/all_countries</code>.
+                This
+                route returns a similar data stucture from the first route filtered by job title, but it instead filters
+                by
+                the experience level indicated by <code>&lt;experience_level_name&gt;</code> (i.e. Junior, Intermediate,
+                Expert or Director).</p>
+        </li>
+        <li>
+            <p>Top 10 ordered countries:
+                <code>/api/v1.0/experience_level/&lt;experience_level_name&gt;/top10_countries</code>. This route
+                returns
+                the same as the previous route, but it truncates the results to show only the top 10 countries by each
+                of
+                the summary statistics.
+            </p>
+        </li>
+    </ol>
+</body>
+
+</html>

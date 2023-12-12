@@ -159,22 +159,9 @@ def home():
 # API home route, listing data routes
 @app.route("/api/v1.0/")
 def api_routes():
-    return '''
-    <h2>Welcome to the Data Science Salaries API!</h2>
-
-    <p>Available static route:</p>
-    <ul>
-        <li><strong>/api/v1.0/salaries</strong>: returns all data from the salaries table.</li>
-    </ul>
-    <p>Available dynamic route:</p>
-    <ul>
-        <li><strong>/api/v1.0/filter/&lt;column_name&gt;/&lt;value&gt;</strong>: returns data filtered using the specified column/value pair. (e.g. <i>/api/v1.0/Company Location/Canada</i> will return all positions where the company is located in Canada)</li>
-        <li><strong>/api/v1.0/country/&lt;country_name&gt;/top10_job_titles</strong>: returns data filtered by the indicated country_name, from the Company Location column. It returns the top 10 job titles by several different summary statistics of the salary in USD (e.g. <i>/api/v1.0/country/Canada/top10_job_titles</i> will return the top 10 job titles by salary where the company is based in Canada, as a list of dictionaries, one dictionary for each summary statistic: mean, max, min and median)</li>
-        <li><strong>/api/v1.0/top10_countries_by_title/&lt;title_name&gt;</strong>: returns data filtered by the indicated title_name. It returns the top 10 countries by several different summary statistics of the salary in USD (e.g. <i>/api/v1.0/top10_countries_by_title/Data Analyst</i> will return the top 10 countries based on salary of the Data Analyst job title, as a list of dictionaries, one dictionary for each summary statistic: mean, max, min and median)</li>
-        <li><strong>/api/v1.0/job_title/&lt;title_name&gt;/experience_levels</strong>: returns data filtered by the indicated title_name and the several different summary statistics of the salary in USD for each experitise level (e.g. <i>/api/v1.0/job_title/Data Analyst/experience_levels</i> will return the summary statisting for the salary of different experience levels for the Data Analyst job title, as a list of dictionaries, one dictionary for each summary statistic: mean, max, min and median)</li>
-    </ul>
-
-    '''
+    # html showing available routes
+    print("Server received request for 'API doc' page...")
+    return render_template('api_doc.html')
 
 # Define what to do when a user hits the /api/v1.0/salaries route
 @app.route("/api/v1.0/salaries")
