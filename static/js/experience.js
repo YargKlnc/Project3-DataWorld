@@ -45,6 +45,7 @@ function loadDataForExperienceLevel(experienceLevel) {
 
 function handleExperienceLevelChange(selectedExperienceLevel) {
   lineExperienceGraph(selectedExperienceLevel)
+  createBubbleMap2(selectedExperienceLevel)
 }
 
 initExperienceLevelsDropdown();
@@ -115,7 +116,7 @@ function lineExperienceGraph(experience) {
     });
 }
 
-// an interactive bubble map that displays the salaries for the experience level selected for all countries
+// // an interactive bubble map that displays the salaries for the experience level selected for all countries
 // API route: /api/v1.0/experience_level/<experience_level_name>/all_countries
 
 function createBubbleMap2(experienceLevel2) {
@@ -150,9 +151,9 @@ function createBubbleMap2(experienceLevel2) {
           let country = countries[i];
 
 
-          const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(country)}`;
+          const apiUrl2 = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(country)}`;
 
-          d3.json(apiUrl).then(function (data) {
+          d3.json(apiUrl2).then(function (data) {
               console.log(data);
 
               let lat = data[0].lat;
@@ -172,7 +173,7 @@ function createBubbleMap2(experienceLevel2) {
 
               bubbleMarkers2.push(bubbleMarker2);
               
-              createMapJob(bubbleMarkers2);
+              createMapExperience(bubbleMarkers2);
 
           });
 
@@ -222,12 +223,12 @@ function createMapExperience(bubbleMarkers2) {
 
   // creating a base layers object
   let baseLayers2 = {
-      "Dark Map": darkmap2
+      "Dark Map2": darkmap2
   };
 
   // creating an overlay layers object
   let overlayLayers2 = {
-      "Job Salaries": bubbleMapLayer2
+      "Job Salaries2": bubbleMapLayer2
   };
 
   // adding layer control with base and overlay layers
