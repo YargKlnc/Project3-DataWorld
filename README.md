@@ -3,41 +3,11 @@
 ### Use the interactive charts below to explore the dataset
 #### This initiative serves as your compass for well-informed decisions in hiring, job seeking, bootcamp considerations, and global HR strategies.
 
+![image](https://github.com/YargKlnc/Project3-DataWorld/assets/142269763/c3fd3e07-eedc-4dc3-ad61-feab30eff45b)
 
 **Project 3 - Group 1 by Ismail Omer, Yargi Kilinc, Archit Hallan, Tania Barrera**
 
 We are delighted to present Project 3, a comprehensive exploration tailored for employers, job seekers in the data realm, individuals contemplating joining a bootcamp, and esteemed global HR companies.
-
-NOTES by Yargi Dec 11
-
-- api route @app.route("/api/v1.0/job_title/<job_title_name>/top10_countries") (revised the job_title_name in here= def salaries_by_title_top10_countries(job_title_name)
-- code divided to 3 parts; country.js, jobs.js, experience.js
-- index.html revised
-- View 1 (horizontal bar chart and openstreetmap completed)
-- View 2 (line chart and bubble darkmap completed)
-- View 3 (line chart completed, map needs work)
-- User can download visuals
-- All titles of visuals revised
-- Head title of dashboard revised on html
-- references updated (adding apexcharts, jsdelivr, openstreetmap, kaggle)
-
-![image](https://github.com/YargKlnc/Project3-DataWorld/assets/142269763/f77a934b-7331-4fde-93ee-ce6a44168ccd)
-
-
-NOTES by Yargi Dec 9
-
-- New library jsdelivr.com was used
-- HTML file revised
-- Style.css revised
-- Countries sorted in alphabetical order for Dropdown1
-- Body color, head color, bar chart color&style revised in style.css
-- New API routes used and added as const url`s
-- lat-long coming from selected country
-- Popup opening on interactive map1 that displays total number of jobs only for the selected country
-- init2 and init3 commented-out (erased), needs new pseadue code and functions)
-
-![Dashboard View1](https://github.com/ismailo1/project3/assets/142269763/a23de68a-96a0-4e77-8e6e-85caedf240bb)
-
 
 Our sophisticated visuals provide profound insights:
 
@@ -55,7 +25,7 @@ Our sophisticated visuals provide profound insights:
 
 **By Selecting JOB TITLE from Dropdown2**
 
-3.	a bar chart that displays the top 10 highest paying countries
+3.	a line graph that displays the top 10 highest paying countries
 
 > **API route:** `/api/v1.0/job_title/<job_title>/top10_countries`
 
@@ -65,7 +35,7 @@ Our sophisticated visuals provide profound insights:
 
 **By Selecting EXPERIENCE LEVEL from Dropdown3**
 
-5.	a bar chart that displays Top10 highest paying countries for that experience level 
+5.	a line graph that displays Top10 highest paying countries for that experience level 
 
 > **API route:** `/api/v1.0/experience_level/<experience_level_name>/top10_countries`
 
@@ -157,6 +127,8 @@ The returned data is in json format and follows this structure:
 ## References
 
 https://www.openstreetmap.org/
+
+https://opencagedata.com/api
 
 https://www.kaggle.com/datasets/iamsouravbanerjee/data-science-salaries-2023/data
 
