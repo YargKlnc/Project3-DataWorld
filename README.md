@@ -50,6 +50,8 @@ Our sophisticated visuals provide profound insights:
 
 ## How to
 
+> **IMPORTANT:** Please generate your own free API key for OpenCage using [opencagedata.com](opencagedata.com). Then, add it to your repo clone in the [country.js](static/js/country.js) file (`openCageKey` variable, on line 2)
+
 To visualize the dashboard, clone the repository into your machine and run the app.py flask application using `python app.py` from Terminal. The Home page (i.e. `/`) will display the dashboard.
 
 Additionaly, you can access the API via this same application. For route explanation go to the `/api/v1.0/` page or see API routes below.
