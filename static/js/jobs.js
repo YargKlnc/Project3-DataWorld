@@ -152,7 +152,7 @@ function createBubbleMap(jobTitle) {
             let country = countries[i];
 
 
-            const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${country}&key=`
+          const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${country}&key=${openCageKey}`
 
 
             d3.json(apiUrl).then(function (data) {

@@ -1,3 +1,5 @@
+// geocage api key: generate key in opencagedata.com
+const openCageKey = 'YOUR API_KEY_HERE'
 // storing url for json data
 const url = 'http://127.0.0.1:5000/api/v1.0/salaries'
 // console log to make sure the data is being read **only for testing**
@@ -212,7 +214,7 @@ function createMapUI(countryName, streetmap, baseMaps, count) {
     
   //  const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(countryName)}`;
 
-  const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${countryName}&key=`
+  const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${countryName}&key=${openCageKey}`
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -264,8 +266,3 @@ function createMapUI(countryName, streetmap, baseMaps, count) {
 // console.log(map);
 
 console.log("logic.js loaded");
-
-
-
-
-
