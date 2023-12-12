@@ -17,7 +17,7 @@ Our sophisticated visuals provide profound insights:
 
 > **API route:** `/api/v1.0/country/<country_name>/top10_job_titles`
 > 
-> **API route if you want all job titles instead of only top10:** `/api/v1.0/country/<country_name>/all_job_titles`
+> **If you want all job titles instead of only top10:** `/api/v1.0/country/<country_name>/all_job_titles`
 
 2.	an interactive Map displaying total number of all job titles with a popup marker
 
@@ -31,7 +31,9 @@ Our sophisticated visuals provide profound insights:
 
 4.	an interactive bubble map that displays the top 10 highest paying countries,
 
-> **API route if you want all countries instead of only top10:** `/api/v1.0/job_title/<job_title>/all_countries`
+> **API route:** `/api/v1.0/job_title/<job_title>/top10_countries`
+> 
+> **If you want all countries instead of only top 10:** `/api/v1.0/job_title/<job_title>/all_countries`
 
 **By Selecting EXPERIENCE LEVEL from Dropdown3**
 
@@ -70,7 +72,7 @@ You will need to have installed the following python packages:
 
 ### API routes
 
-#### To access the whole dataset
+#### Static: To access the whole dataset
 
 Our API has a static route that returns all the individual data points, along with the distinct values present in the dataset for the `Company Location`, `Job Title`, `Expertise Level` columns.
 
@@ -120,6 +122,159 @@ The returned data is in json format and follows this structure:
 
 ```
 
+#### Dynamic: Filtered by a column's value
+
+The rest of the API routes are dynamic. The first one is a general route that allows the user to filter using a single value for a column in the salaries table.
+
+To access this route, follow this relative route after stating your local server: `/api/v1.0/filter/<column_name>/<value>`, where `<column_name>` is the name of one of the columns in the salaries table and `<value>` is the desired value for that column.
+
+The returned data is in json format and follows the same structure as the above static route.
+
+#### Dynamic: Filtered by country
+
+There are three routes that filter the data by a single country and return aggregated data.
+
+1. Job title counts: `/api/v1.0/country/<country_name>/job_title_counts`. This route returns a json dictionary where the keys correspond to the job titles available in the country selected in `<country_name>`. Here is an example of the returned data structure:
+
+    ```json
+    {
+        ...,
+        "Data Analyst": {
+            "count": 20
+        },
+        "Data Architect": {
+            "count": 2
+        },
+        "Data Engineer": {
+            "count": 22
+        },
+        "Data Scientist": {
+            "count": 36
+        },
+        ...
+    }
+    ```
+
+2. Ordered job titles: `/api/v1.0/country/<country_name>/all_job_titles`. This route returns a json dictionary where the keys correspond to summary statics mean, median, max and mean. Each of these contains a dictionary of job titles available in the country selected in `<country_name>`, ordered descending by the summary statistic indicated in the key. Within a rank number there is a list with the first value corresponding to the job title name and the second the aggregated value (using the indicated summary statistic) of salary in USD. Here is an example of the returned data structure:
+
+    ```json
+    {
+        "max_salary": {
+            "1": [
+                "Data Scientist",
+                281000
+            ],
+            "2": [
+                "AI Developer",
+                275000
+            ],
+            ...
+        },
+        "mean_salary": {
+            "1": [
+                "AI Developer",
+                275000.0
+            ],
+            "2": [
+                "Machine Learning Software Engineer",
+                206800.0
+            ],
+            ...
+        },
+        "median_salary": {
+            "1": [
+                "AI Developer",
+                275000.0
+            ],
+            "2": [
+                "Machine Learning Software Engineer",
+                205400.0
+            ],
+            ...
+        },
+        "min_salary": {
+            "1": [
+                "AI Developer",
+                275000
+            ],
+            "2": [
+                "AI Scientist",
+                200000
+            ],
+            ...
+        }
+    }
+    ```
+
+3. Top 10 ordered job titles: `/api/v1.0/country/<country_name>/top10_job_titles`. This route returns the same as the previous route, but it truncates the results to show only the top 10 job titles by each of the summary statistics.
+
+#### Dynamic: Filtered by job title
+
+There are three routes that filter the data by a single job title and return aggregated data.
+
+1. Ordered countries: `/api/v1.0/job_title/<job_title_name>/all_countries`. This route returns a json dictionary where the keys correspond to summary statics mean, median, max and mean. Each of these contains a dictionary of countries where the job title selected in `<job_title_name>` is available, ordered descending by the summary statistic indicated in the key. Within a rank number there is a list with the first value corresponding to the country name and the second the aggregated value (using the indicated summary statistic) of salary in USD. Here is an example of the returned data structure:
+
+    ```json
+    {
+        "max_salary": {
+            "1": [
+                "United States",
+                370000
+            ],
+            "2": [
+                "Canada",
+                242000
+            ],
+            ...
+        },
+        "mean_salary": {
+            "1": [
+                "Puerto Rico",
+                167500.0
+            ],
+            "2": [
+                "United States",
+                157723.5366242038
+            ],
+            ...
+        },
+        "median_salary": {
+            "1": [
+                "Puerto Rico",
+                167500.0
+            ],
+            "2": [
+                "United States",
+                151305.0
+            ],
+            ...
+        },
+        "min_salary": {
+            "1": [
+                "Puerto Rico",
+                135000
+            ],
+            "2": [
+                "Ireland",
+                102569
+            ],
+            ...
+        }
+    }
+    ```
+
+2. Top 10 ordered countries: `/api/v1.0/job_title/<job_title_name>/top10_countries`. This route returns the same as the previous route, but it truncates the results to show only the top 10 countries by each of the summary statistics.
+
+3. Ordered experience levels: `/api/v1.0/job_title/<job_title_name>/experience_levels`. This route returns a similar data stucture from the previous two routes, but it aggregates by experience level, instead of by country.
+
+
+#### Dynamic: Filtered by experience level
+
+There are two dynamic routes that filter the data by an experience level and return aggregated data.
+
+1. Ordered countries: `/api/v1.0/experience_level/<experience_level_name>/all_countries`. This route returns a similar data stucture from the first route filtered by job title, but it instead filters by the experience level indicated by `<experience_level_name>` (i.e. Juniot, Intermediate, Expert or Director).
+
+2. Top 10 ordered countries: `/api/v1.0/experience_level/<experience_level_name>/top10_countries`. This route returns the same as the previous route, but it truncates the results to show only the top 10 countries by each of the summary statistics.
 
 
 ---
@@ -128,10 +283,12 @@ The returned data is in json format and follows this structure:
 
 https://www.openstreetmap.org/
 
-https://opencagedata.com/api
-
-https://www.kaggle.com/datasets/iamsouravbanerjee/data-science-salaries-2023/data
-
 https://www.jsdelivr.com/
 
 https://apexcharts.com/javascript-chart-demos/
+
+**Data:**
+
+https://www.kaggle.com/datasets/iamsouravbanerjee/data-science-salaries-2023/data
+
+https://opencagedata.com/api
